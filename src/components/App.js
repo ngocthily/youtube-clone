@@ -1,9 +1,11 @@
 import React from 'react';
+import { Route } from 'react-router-dom';
+import SearchResultList from 'components/SearchResultList';
 
 const App = () => {
     return (
         <div>
-            Hi
+            <Route path="/results" component={SearchResultList}/>
         </div>
     )
 }
