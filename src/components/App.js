@@ -5,6 +5,7 @@ import SearchResultList from 'components/SearchResultList';
 
 function App() {
     const [videos, setVideos] = useState([]);
+    const [video, setVideo] = useState(null);
 
     const handleSubmit = async (keyword) => {
         const response = await youtube.get("/search", {
@@ -16,13 +17,24 @@ function App() {
         setVideos(response.data.items);
     };
 
+    const selectVideo = (video) => {
+        setVideo(video);
+    };
+
     return (
         <div>
             <div>
-                <SearchBar searchHandleSubmit={handleSubmit}/>
+                <SearchBar onHandleSubmit={handleSubmit}/>
             </div>
             <div>
-                <SearchResultList videos={videos}/>
+                {!video ?
+                    <SearchResultList
+                        onVideoSelect={selectVideo}
+                        videos={videos}
+                    /> :
+                    null
+                    // this is where I will put the individual video
+                }
             </div>
         </div>
     )

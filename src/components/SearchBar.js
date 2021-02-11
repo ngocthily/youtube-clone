@@ -3,7 +3,7 @@ import { TextField,
     InputAdornment} from '@material-ui/core';
 import { Search } from '@material-ui/icons'
 
-const SearchBar = ({ searchHandleSubmit }) => {
+const SearchBar = ({ onHandleSubmit }) => {
     const [keyword, setKeyword] = useState('');
 
     const onChange = (event) => {
@@ -12,7 +12,7 @@ const SearchBar = ({ searchHandleSubmit }) => {
 
     const handleSubmit = (event) => {
         event.preventDefault();
-        searchHandleSubmit(keyword);
+        onHandleSubmit(keyword);
         setKeyword('');
     }
 
