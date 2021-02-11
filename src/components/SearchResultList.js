@@ -1,11 +1,14 @@
 import React from 'react';
-import SearchBar from 'components/SearchBar';
+import VideoItem from 'components/VideoItem';
 
-const SearchResultList = () => {
+const SearchResultList = ({ videos }) => {
     return (
         <div>
-            <div><SearchBar/></div>
-            <div>Search List</div>
+            <div>
+                {videos.map((video,idx) => (
+                    <VideoItem key={idx} video={video}/>
+                ))}
+            </div>
         </div>
     )
 };
