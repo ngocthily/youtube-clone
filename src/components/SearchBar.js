@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { TextField,
-    InputAdornment} from '@material-ui/core';
+    InputAdornment,
+    Button} from '@material-ui/core';
 import { Search } from '@material-ui/icons'
 
 function SearchBar({ onHandleSubmit }) {
@@ -24,12 +25,17 @@ function SearchBar({ onHandleSubmit }) {
                     variant="outlined"
                     value={keyword}
                     onChange={onChange}
+                    size="small"
                     InputProps={{
                         endAdornment: (
                             <InputAdornment position="end">
-                                <Search/>
+                                <Button onClick={handleSubmit} 
+                                    style={{minHeight: 0, minWidth: 0}}>
+                                    <Search/>
+                                </Button>
                             </InputAdornment>
                         ),
+                        style: {padding: 0}
                     }}>  
                 </TextField> 
             </form>

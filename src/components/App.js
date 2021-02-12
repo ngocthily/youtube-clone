@@ -7,6 +7,7 @@ import logo from 'images/youtube_logo.svg';
 import githubIcon from 'images/github_icon.svg';
 import linkedinIcon from 'images/linkedin_icon.svg';
 import profileIcon from 'images/profile_icon.jpg';
+import yearOfOx from 'images/year_of_ox.png';
 import { Grid, Box } from '@material-ui/core';
 
 function App() {
@@ -44,10 +45,12 @@ function App() {
                     alignItems="center">
                 <div>
                     <img src={logo} 
-                        width={120}
-                        alt="YouTube Logo"/>
+                        width={100}
+                        alt="YouTube Logo"
+                        onClick={() => window.location.reload()}
+                        style={{cursor: "pointer"}}/>
                 </div>
-                <div><SearchBar onHandleSubmit={handleSubmit} /></div>
+                <div><SearchBar onHandleSubmit={handleSubmit}/></div>
                 <div>
                     <a href="https://github.com/ngocthily"
                         target="_blank"
@@ -77,11 +80,44 @@ function App() {
                 </Grid>
             </div>
             <div>
-                <SelectedVideo video={video}/>
-                <SearchResultList
-                    onVideoSelect={selectVideo}
-                    videos={videos}
-                />
+                {videos.length !== 0 ? 
+                    <div>
+                        <SelectedVideo video={video}/>
+                        <SearchResultList
+                            onVideoSelect={selectVideo}
+                            videos={videos}
+                        />
+                    </div> :
+                    <div style={{display: "flex", 
+                        flexDirection: "column", 
+                        alignItems: "center",
+                        padding: 50}}>
+                        <div style={{textAlign: "center"}}> 
+                            <h1>Welcome to my YouTube clone!</h1>
+                            <h2>(and the Year of the Ox)</h2>
+                        </div>
+                        <div>
+                            <ul>
+                                <h4>Quick and easy instructions on how to use:</h4>
+                                <li>Click on YouTube logo anytime you want to reload the page</li>
+                                <li>Search for videos by typing in the search bar and hitting enter or clicking the search button</li>
+                            </ul>
+                        </div>
+                        <div style={{display: "flex", 
+                            flexDirection: "column",
+                            alignItems: "center",
+                            padding: 25}}>
+                            <img 
+                                src={yearOfOx}
+                                alt="Year of the Ox"
+                                width={400}/>
+                            <a href="https://lovepik.com/images/png-2021.html"
+                                style={{fontSize: 14, color: "black"}}>
+                                2021 Png vectors by Lovepik.com
+                            </a>
+                        </div>
+                    </div>
+                }
             </div>
         </div>
     )
