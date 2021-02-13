@@ -16,16 +16,6 @@ function SelectedVideo ({ video }) {
         setViewCount(videoViewCount);
     }, [])
 
-    // useEffect(async () => {
-    //     const response = await youtube.get("/search", {
-    //         params: {
-    //             relatedToVideoId: video.id.videoId
-    //         }
-    //     })
-
-    //     console.log(response)
-    // })
-
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
 
     return (
