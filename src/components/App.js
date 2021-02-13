@@ -3,6 +3,7 @@ import youtube from 'apis/youtube';
 import SearchBar from 'components/SearchBar';
 import SearchResultList from 'components/SearchResultList';
 import SelectedVideo from 'components/SelectedVideo';
+import RelatedVideos from 'components/RelatedVideos';
 import logo from 'images/youtube_logo.svg';
 import githubIcon from 'images/github_icon.svg';
 import linkedinIcon from 'images/linkedin_icon.svg';
@@ -83,7 +84,10 @@ function App() {
                 {videos.length !== 0 ? 
                     <div style={{display: "flex"}}>
                         { video ? 
-                            <SelectedVideo video={video} /> :
+                        <div>
+                            <SelectedVideo video={video} /> 
+                             <RelatedVideos video={video}/>
+                        </div> :
                             null }
                         <SearchResultList
                             onVideoSelect={selectVideo}
