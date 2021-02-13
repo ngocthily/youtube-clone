@@ -8,13 +8,18 @@ import githubIcon from 'images/github_icon.svg';
 import linkedinIcon from 'images/linkedin_icon.svg';
 import profileIcon from 'images/profile_icon.jpg';
 import yearOfOx from 'images/year_of_ox.png';
-import { Grid, Box } from '@material-ui/core';
+import { Grid } from '@material-ui/core';
 
 function App() {
     const [videos, setVideos] = useState([]);
     const [video, setVideo] = useState(null);
+    const [smallTitle, setSmallTitle] = useState(false);
+    const [selectVideoIdx, setSelectVideoIdx] = useState(null);
 
     const handleSubmit = async (keyword) => {
+        setVideo(null);
+        setSelectVideoIdx(null);
+        
         const response = await youtube.get("/search", {
             params: {
                 q: keyword
@@ -26,14 +31,9 @@ function App() {
 
     const selectVideo = (video) => {
         setVideo(video);
-
-        // when an user selects a video we will show it as a video player instead
-        // so we must remove it from the videos' list
+        setSmallTitle(!smallTitle);
         const idxOfSelectedVideo = videos.indexOf(video);
-        if (idxOfSelectedVideo > -1) {
-            videos.splice(idxOfSelectedVideo, 1)
-        } 
-        setVideos(videos);
+        setSelectVideoIdx(idxOfSelectedVideo);
     };
 
     return (
@@ -81,11 +81,15 @@ function App() {
             </div>
             <div>
                 {videos.length !== 0 ? 
-                    <div>
-                        <SelectedVideo video={video}/>
+                    <div style={{display: "flex"}}>
+                        { video ? 
+                            <SelectedVideo video={video} /> :
+                            null }
                         <SearchResultList
                             onVideoSelect={selectVideo}
                             videos={videos}
+                            smallTitle={smallTitle}
+                            selectVideoIdx={selectVideoIdx}
                         />
                     </div> :
                     <div style={{display: "flex", 
