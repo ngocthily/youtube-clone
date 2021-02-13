@@ -12,10 +12,12 @@ function RelatedVideos({video}) {
             params: {
                 relatedToVideoId: videoId
             }
-        }, setTimeout(10000));
+        });
         
         // setRelatedVideos(response.data.items);
         // console.log(response.data.items)
+        // snippet is only showing up for selected, super annoying
+        // tried using the APIs Explorer to call API and does the same thing
     }, []);
 
     return (
