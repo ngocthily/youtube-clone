@@ -25,7 +25,6 @@ function SelectedVideo ({ video }) {
                     <iframe title="video player" 
                         src={videoSrc} 
                         frameBorder="0"
-                        gesture="media" 
                         allow="encrypted-media" 
                         allowFullScreen
                         style={{

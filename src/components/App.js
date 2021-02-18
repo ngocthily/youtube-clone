@@ -15,11 +15,10 @@ function App() {
     const [videos, setVideos] = useState([]);
     const [video, setVideo] = useState(null);
     const [smallTitle, setSmallTitle] = useState(false);
-    const [selectVideoIdx, setSelectVideoIdx] = useState(null);
+    const [relatedVideos, setRelatedVideos] = useState([]);
 
     const handleSubmit = async (keyword) => {
         setVideo(null);
-        setSelectVideoIdx(null);
         
         const response = await youtube.get("/search", {
             params: {
@@ -30,11 +29,27 @@ function App() {
         setVideos(response.data.items);
     };
 
+    const getRelatedVideos = async (video) => {
+        const videoId = video.id.videoId;
+        const response = await youtube.get("/search", {
+            params: {
+                relatedToVideoId: videoId
+            }
+        });
+
+        // snippet is only showing up for selected videos, super annoying
+        // tried using the APIs Explorer to call API and does the same thing
+        // somewhat of a fix is to just videos that come back with snippet to get video's info
+        let videos = response.data.items.filter(video => video.snippet);
+
+        setRelatedVideos(videos);
+    };
+
     const selectVideo = (video) => {
         setVideo(video);
         setSmallTitle(!smallTitle);
-        const idxOfSelectedVideo = videos.indexOf(video);
-        setSelectVideoIdx(idxOfSelectedVideo);
+        getRelatedVideos(video);
+        setVideos(relatedVideos);
     };
 
     return (
@@ -86,15 +101,14 @@ function App() {
                         { video ? 
                         <div>
                             <SelectedVideo video={video} /> 
-                             <RelatedVideos video={video}/>
+                             <RelatedVideos videos={videos}
+                                    onVideoSelect={selectVideo}
+                                    smallTitle={smallTitle}/>
                         </div> :
-                            null }
-                        <SearchResultList
-                            onVideoSelect={selectVideo}
-                            videos={videos}
-                            smallTitle={smallTitle}
-                            selectVideoIdx={selectVideoIdx}
-                        />
+                            <SearchResultList
+                                onVideoSelect={selectVideo}
+                                videos={videos}
+                            /> }
                     </div> :
                     <div style={{display: "flex", 
                         flexDirection: "column", 
