@@ -49,7 +49,7 @@ function App() {
         setVideo(video);
         setSmallTitle(!smallTitle);
         getRelatedVideos(video);
-        setVideos(relatedVideos);
+        // setVideos(relatedVideos);
     };
 
     return (
@@ -96,12 +96,12 @@ function App() {
                 </Grid>
             </div>
             <div>
-                {videos.length !== 0 ? 
+                {videos.length !== 0 || relatedVideos.length !== 0 ? 
                     <div style={{display: "flex"}}>
                         { video ? 
                         <div>
                             <SelectedVideo video={video} /> 
-                             <RelatedVideos videos={videos}
+                             <RelatedVideos videos={relatedVideos}
                                     onVideoSelect={selectVideo}
                                     smallTitle={smallTitle}/>
                         </div> :
