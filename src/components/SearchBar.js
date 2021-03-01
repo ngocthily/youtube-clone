@@ -34,8 +34,7 @@ function SearchBar({ onHandleSubmit }) {
                                     <Search/>
                                 </Button>
                             </InputAdornment>
-                        ),
-                        style: {padding: 0}
+                        )
                     }}>  
                 </TextField> 
             </form>

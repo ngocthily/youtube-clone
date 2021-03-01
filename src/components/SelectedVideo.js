@@ -19,36 +19,20 @@ function SelectedVideo ({ video }) {
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
 
     return (
-        <div style={{paddingTop: 30}}>
-            <div style={{ width: "60vw"}}>
-                <div style={{ position: "relative", overflow: "hidden", paddingTop: "56.25%"}}>
+        <div>
+            <div>
+                <div>
                     <iframe title="video player" 
                         src={videoSrc} 
                         frameBorder="0"
                         allow="encrypted-media" 
-                        allowFullScreen
-                        style={{
-                            position: "absolute",
-                            top: 0,
-                            left: 0,
-                            width: "100%",
-                            height: "100%",
-                            border: 0,
-                        }}/>
+                        allowFullScreen/>
                 </div>
             </div>
             <div>
-                <p style={{
-                    fontSize: "1.8vw",
-                    fontWeight: "bold"}}>
-                    {video.snippet.title}
-                </p>
-                <p style={{ fontSize: "1.2vw" }}>
-                    {viewCount} views
-                </p>
-                <p style={{ fontSize: "1vw" }}>
-                    {video.snippet.description}
-                </p>
+                <p>{video.snippet.title}</p>
+                <p>{viewCount} views</p>
+                <p>{video.snippet.description}</p>
             </div>
         </div>
     )

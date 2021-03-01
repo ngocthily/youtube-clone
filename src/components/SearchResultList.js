@@ -3,11 +3,7 @@ import VideoItem from 'components/VideoItem';
 
 function SearchResultList({ videos, onVideoSelect}) {
     return (
-        <div style={{display: "flex", 
-            flexDirection: "column", 
-            justifyContent: "center", 
-            alignItems: "center",
-            padding: 10}}>
+        <div>
             {videos.map((video) => (
                 <VideoItem 
                     key={video.id.videoId} 
