@@ -4,16 +4,21 @@ import youtube from 'apis/youtube';
 function SelectedVideo ({ video }) {
     const [viewCount, setViewCount] = useState('');
 
-    useEffect(async () => {
-        const videoId = video.id.videoId;
-        const response = await youtube.get("/videos", {
-            params: {
-                part: 'statistics',
-                id: videoId
-            }
-        });
-        const videoViewCount = response.data.items[0].statistics.viewCount;
-        setViewCount(videoViewCount);
+    useEffect(() => {
+        async function fetchVideo() {
+            const videoId = video.id.videoId;
+            const response = await youtube.get("/videos", {
+                params: {
+                    part: 'statistics',
+                    id: videoId
+                }
+            });
+            const videoViewCount = response.data.items[0].statistics.viewCount;
+            setViewCount(videoViewCount);
+        }
+
+        fetchVideo();
+        
     }, [])
 
     const videoSrc = `https://www.youtube.com/embed/${video.id.videoId}`;
