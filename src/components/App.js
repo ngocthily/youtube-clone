@@ -8,7 +8,6 @@ import logo from 'images/youtube_logo.svg';
 import githubIcon from 'images/github_icon.svg';
 import linkedinIcon from 'images/linkedin_icon.svg';
 import profileIcon from 'images/profile_icon.jpg';
-import yearOfOx from 'images/year_of_ox.png';
 
 function App() {
     const [videos, setVideos] = useState([]);
@@ -52,7 +51,6 @@ function App() {
             <div>
                 <div>
                     <img src={logo} 
-                        width={100}
                         alt="YouTube Logo"
                         onClick={() => window.location.reload()}
                         style={{cursor: "pointer"}}/>
@@ -97,7 +95,6 @@ function App() {
                     <div>
                         <div> 
                             <h1>Welcome to my YouTube clone!</h1>
-                            <h2>(and the Year of the Ox)</h2>
                         </div>
                         <div>
                             <ul>
@@ -105,14 +102,6 @@ function App() {
                                 <li>Click on YouTube logo anytime you want to reload the page</li>
                                 <li>Search for videos by typing in the search bar and hitting enter or clicking the search button</li>
                             </ul>
-                        </div>
-                        <div>
-                            <img 
-                                src={yearOfOx}
-                                alt="Year of the Ox"/>
-                            <a href="https://lovepik.com/images/png-2021.html">
-                                2021 Png vectors by Lovepik.com
-                            </a>
                         </div>
                     </div>
                 }
